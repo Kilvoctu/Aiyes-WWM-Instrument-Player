@@ -1,9 +1,11 @@
 # midi_tools/io_midicsv.py
+import chardet
 import subprocess
 
 def load_midicsv(path):
     events = []
-    with open(path, "r", newline="", encoding="utf-8") as f:
+    encoding_type = chardet.detect(open(path, "rb").read())["encoding"]
+    with open(path, "r", newline="", encoding=encoding_type) as f:
         for line in f:
             raw = line.rstrip("\n")
             striped = raw.strip()
