@@ -26,13 +26,13 @@ jobs:
 
       - name: Build EXE with PyInstaller
         run: |
-          pyinstaller --onefile --windowed wind_instrument_gui.py
+          pyinstaller --onefile --windowed --name "Aiyi.Instrument.Player" wind_instrument_gui.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: exe-build
-          path: dist/wind_instrument_gui.exe
+          path: dist/Aiyi.Instrument.Player.exe
 
   release:
     needs: build
@@ -60,6 +60,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.tag }}
-          files: wind_instrument_gui.exe
+          files: Aiyi.Instrument.Player.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
